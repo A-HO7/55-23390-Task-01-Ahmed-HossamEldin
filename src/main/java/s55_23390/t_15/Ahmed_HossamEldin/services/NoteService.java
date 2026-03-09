@@ -43,10 +43,11 @@ public class NoteService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Note not found"));
     }
 
-    public List<Note> searchNotesByTitle(String title) {
+    public Note searchNotesByTitle(String title) {
         return noteRepository.findAll().stream()
                 .filter(note -> note.getTitle().toLowerCase().contains(title.toLowerCase()))
-                .toList();
+                .findFirst()
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Note not found"));
     }
 
     public void deleteNote(String id) {

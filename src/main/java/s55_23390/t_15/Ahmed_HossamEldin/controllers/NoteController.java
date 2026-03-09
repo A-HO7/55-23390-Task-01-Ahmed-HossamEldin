@@ -27,7 +27,7 @@ public class NoteController {
     }
 
     @GetMapping("/search")
-    public List<Note> searchNotesByTitle(@RequestParam String title) {
+    public Note searchNotesByTitle(@RequestParam String title) {
         return noteService.searchNotesByTitle(title);
     }
 
