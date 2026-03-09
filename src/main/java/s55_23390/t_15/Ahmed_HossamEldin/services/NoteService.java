@@ -44,9 +44,7 @@ public class NoteService {
     }
 
     public Note searchNotesByTitle(String title) {
-        return noteRepository.findAll().stream()
-                .filter(note -> note.getTitle().toLowerCase().contains(title.toLowerCase()))
-                .findFirst()
+        return noteRepository.findByTitle(title)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Note not found"));
     }
 

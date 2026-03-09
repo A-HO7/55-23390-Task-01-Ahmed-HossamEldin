@@ -56,6 +56,12 @@ public class NoteRepository {
                 .collect(Collectors.toList());
     }
 
+    public Optional<Note> findByTitle(String title) {
+        return notes.stream()
+                .filter(note -> note.getTitle().toLowerCase().contains(title.toLowerCase()))
+                .findFirst();
+    }
+
     public Note save(Note note) {
         note.setId(java.util.UUID.randomUUID().toString());
         notes.add(note);
